@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main()
+{
+    // a. Nome
+    // b. Idade
+    // c. Matricula
+    // e. Endereço
+    // f. Curso
+    // g. Período
+    // h. Disciplinas
+
+    char nome[50]; 
+    int idade;     
+    char matricula[50];
+    char endereco[100];
+    char curso[30];
+    int periodo;
+    char disciplinas[100];
+
+    printf("Digite o seu nome: "); 
+    fgets(nome, 50, stdin);        
+    fflush(stdin);                 
+
+    printf("Digite sua idade: ");
+    scanf("%d", &idade);
+    fflush(stdin);
+
+    printf("Digite sua matricula: ");
+    fgets(matricula, 50, stdin);
+    fflush(stdin);
+
+    printf("Digite seu endereco: ");
+    fgets(endereco, 100, stdin);
+    fflush(stdin);
+
+    printf("Digite seu curso: ");
+    fgets(curso, 30, stdin);
+    fflush(stdin);
+
+    printf("Digite o periodo em que voce esta: ");
+    scanf("%d", &periodo);
+    fflush(stdin);
+
+    printf("Digite as disciplinas: ");
+    fgets(disciplinas, 100, stdin);
+    fflush(stdin);
+
+    printf("---------<3----------");
+    printf("\niNFORMACOES DO ALUNO(A):");
+    printf("\n---------<3----------");
+    printf("\n\nNome: %sIdade: %d \nMatricula: %sEndereco: %sCurso: %sPeriodo: %i \nDisciplinas: %s\n", nome, idade, matricula, endereco, curso, periodo, disciplinas);
+    
+    return 0;
+}
