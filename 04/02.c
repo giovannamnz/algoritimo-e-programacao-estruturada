@@ -2,7 +2,8 @@
 
 int main()
 {
-
+    //Construa um algoritmo que dado quatro valores, A, B, C e D, o algoritmo imprima o maior e o menor valor.
+    
     int a, b, c, d, menor, maior;
 
     printf("Digite quatro numeros: ");
