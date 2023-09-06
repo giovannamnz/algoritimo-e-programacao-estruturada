@@ -80,7 +80,7 @@ int main()
     printf("\n---------------------------------------------");
     printf("\nITEM: %s", nomeItem);
     printf("\n                            -----------------");
-    printf("\nQUANTIDADE DE ITENS:                         %d \nTOTAL:                                 R$%.2f\n", quantidade, preco);
+    printf("\nQUANTIDADE DE ITENS:                        %d \nTOTAL:                                R$%.2f\n", quantidade, preco);
 
     return 0;
 }
