@@ -13,22 +13,22 @@ int main()
 
     if (num == 5)
     {
-        printf("numero diferente de 5");
+        printf("%d", num);
     }
 
     else if (num == 200)
     {
-        printf("numero diferente de 200");
+        printf("%d", num);
     }
 
     else if(num == 400)
     {
-        printf("numero diferente de 400");
+        printf("%d", num);
     }
 
     else if((num > 500) && (num < 1000))
     {
-        printf("numero nao esta contido entre 500 e 1000");
+        printf("%d", num);
     }
 
     else
