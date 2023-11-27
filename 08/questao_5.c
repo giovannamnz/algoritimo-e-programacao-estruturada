@@ -10,13 +10,13 @@
 typedef struct {
     char name[50];
     int age;
-    char sex; // 'M' para masculino, 'F' para feminino
+    char sex; 
     int vote;
-} Entrevistado;
+} Interviewee;
 
 //data entry
 int main() {
-    Entrevistado interviewed[MAX_INTERVIEWERS];
+    Interviewee interviewed[MAX_INTERVIEWERS];
     int votes[NUM_PLAYERS] = {0};
     int num_interviewed = 0;
     int i;
@@ -26,7 +26,7 @@ int main() {
 
     //input
     while (num_interviewed < MAX_INTERVIEWERS) {
-        printf("\nEntrevistado %d:\n", num_interviewed + 1);
+        printf("\nInterviewee %d:\n", num_interviewed + 1);
         printf("Nome: ");
         scanf("%s", interviewed[num_interviewed].name);
         printf("Idade: ");
