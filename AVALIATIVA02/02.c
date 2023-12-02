@@ -2,11 +2,14 @@
 
 #define SALARIO_MINIMO 1400.00
 
+// defining the structure of the worker
 typedef struct {
     char sexo;
     float salario;
 } Assalariado;
 
+
+//salary classification
 char* classificaSalario(float salario) {
     if (salario > SALARIO_MINIMO) {
         return "Acima do salario minimo";
@@ -17,6 +20,7 @@ char* classificaSalario(float salario) {
     }
 }
 
+//computing
 void mostraClassifica(Assalariado assalariado) {
     char* sexo = (assalariado.sexo == 'M') ? "Masculino" : "Feminino";
     printf("Salario: R$ %.2f\n", assalariado.salario);
@@ -24,6 +28,7 @@ void mostraClassifica(Assalariado assalariado) {
     printf("Sexo: %s\n", sexo);
 }
 
+//data entry
 int main() {
     Assalariado assalariado;
     int total = 0, abaixo = 0, acima = 0;
@@ -50,6 +55,8 @@ int main() {
         }
     }
 
+    
+    //output
     printf("Total de assalariados: %d\n", total);
     printf("Assalariados com salario abaixo do minimo: %d\n", abaixo);
     printf("Assalariados com salario acima do minimo: %d\n", acima);
