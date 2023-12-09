@@ -2,51 +2,65 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Structure to represent a Carro
+// transformar texto em italico
+void italic(int status)
+{
+    static const char *seq[] = {"\x1b[0m", "\x1b[3m"};
+    printf("%s", seq[!!status]);
+}
+
+// transformar texto em negrito
+void bold(int status)
+{
+    static const char *seq[] = {"\x1b[0m", "\x1b[1m"};
+    printf("%s", seq[!!status]);
+}
+
+// estrutura para representar um carro
 struct Carro {
     char dono[50];
-    char gasolina[10];
+    char combustivel[10];
     char modelo[50];
     char cor[20];
-    char Num_Chassis[20];
-    char placa[10]; // Separate variable for placa
-    char ano[10]; // Separate variable for ano
+    char num_chassis[20];
+    char placa[10];
+    char ano[10]; 
     struct Carro* proximo;
 };
 
-// Function to create an empty list
-struct Carro* criarLista() {
+// função para criar uma lista vazia
+struct Carro* criar_lista() {
     return NULL;
 }
 
-// Function to add a Carro to the list
-struct Carro* addCarro(struct Carro* head, char dono[], char gasolina[], char modelo[], char cor[], char Num_Chassis[], char placa[], char ano[]) {
+// função para adicionar um carro à lista
+struct Carro* addCarro(struct Carro* head, char dono[], char combustivel[], char modelo[], char cor[], char num_chassis[], char placa[], char ano[]) {
     struct Carro* newCarro = (struct Carro*)malloc(sizeof(struct Carro));
     strcpy(newCarro->dono, dono);
-    strcpy(newCarro->gasolina, gasolina);
+    strcpy(newCarro->combustivel, combustivel);
     strcpy(newCarro->modelo, modelo);
     strcpy(newCarro->cor, cor);
-    strcpy(newCarro->Num_Chassis, Num_Chassis);
+    strcpy(newCarro->num_chassis, num_chassis);
     strcpy(newCarro->placa, placa);
     strcpy(newCarro->ano, ano);
     newCarro->proximo = head;
     return newCarro;
 }
 
-// Function to list donos whose Carros are from the ano 2010 or later and run on diesel
-void listdonos(struct Carro* head) {
-    printf("donos whose Carros are from the ano 2010 or later and run on diesel:\n\n");
+// função para listar os donos cujos Carros são do ano 2010 ou posterior e rodam a diesel
+void listadonos(struct Carro* head) {
+    printf("Donos cujos carros sao do ano 2010 ou posterior e funcionam a disel:\n\n");
     while (head != NULL) {
-        if (atoi(head->ano) >= 2010 && strcmp(head->gasolina, "diesel") == 0) {
+        if (atoi(head->ano) >= 2010 && strcmp(head->combustivel, "diesel") == 0) {
             printf("%s\n", head->dono);
         }
         head = head->proximo;
     }
 }
 
-// Function to list license placas that start with the letter J and end with 0, 2, 4, or 7 and their respective donos
-void listLicenseplacas(struct Carro* head) {
-    printf("License placas that start with the letter J and end with 0, 2, 4, or 7 and their respective donos:\n");
+// função para listar placas que iniciam com a letra J e terminam com 0, 2, 4 ou 7 e seus respectivos donos
+void lista_placas(struct Carro* head) {
+    printf("Placas que iniciam com a letra J e terminam com 0, 2, 4 ou 7 e seus respectivos donos:\n");
     while (head != NULL) {
         if (head->placa[0] == 'J' && (head->placa[strlen(head->placa) - 1] == '0' || head->placa[strlen(head->placa) - 1] == '2' || head->placa[strlen(head->placa) - 1] == '4' || head->placa[strlen(head->placa) - 1] == '7')) {
             printf("%s - %s\n", head->placa, head->dono);
@@ -55,9 +69,9 @@ void listLicenseplacas(struct Carro* head) {
     }
 }
 
-// Function to list modelo and cor of vehicles whose license placas have a vowel as their second letter and whose numerical values add up to an even number
-void listmodeloAndcor(struct Carro* head) {
-    printf("modelo and cor of vehicles whose license placas have a vowel as their second letter and whose numerical values add up to an even number:\n");
+// função para listar modelo e cor de veículos cujas placas possuem uma vogal como segunda letra e cujos valores numéricos somam um número par
+void lista_modelo_cor(struct Carro* head) {
+    printf("modelo e cor dos veiculos cujas placas tenham vogal como segunda letra e cujos valores numericos somam um numero par:\n");
     while (head != NULL) {
         if (strchr("aeiouAEIOU", head->placa[1]) && (head->placa[3] + head->placa[4] + head->placa[5] + head->placa[6]) % 2 == 0) {
             printf("%s - %s\n", head->modelo, head->cor);
@@ -66,93 +80,118 @@ void listmodeloAndcor(struct Carro* head) {
     }
 }
 
-// Function to change dono by providing the chassis number for Carros with license placas that do not have any digits equal to zero
-void mudardono(struct Carro* head, char Num_Chassis[], char newdono[]) {
+// função para alterar dono fornecendo o número do chassi de Carros com placas que não possuem dígito igual a zero
+void mudardono(struct Carro* head, char num_chassis[], char novo_dono[]) {
     while (head != NULL) {
-        if (!strchr(head->placa, '0') && strcmp(head->Num_Chassis, Num_Chassis) == 0) {
-            strcpy(head->dono, newdono);
-            printf("dono changed successfully!\n");
+        if (!strchr(head->placa, '0') && strcmp(head->num_chassis, num_chassis) == 0) {
+            strcpy(head->dono, novo_dono);
+            bold(1);
+            italic(1);
+            printf("Dono alterado com sucesso!\n");
+            bold(0);
+            italic(0);
             return;
         }
         head = head->proximo;
     }
-    printf("No Carro found with the provided chassis number or the Carro has digits equal to zero in its license placa.\n");
+    bold(1);
+    italic(1);
+    printf("Nao foi encontrado nenhum carro com o numero de chassi fornecido ou o carro possui digitos iguais a zero em sua placa de licenca.\n");
+    bold(0);
+    italic(0);
 }
 
-// Function to print the menu and get user's choice
-char getMenuChoice() {
-    char choice;
-    printf("\nTHE Carro's\n");
-    printf("\na. Add a Carro\n");
-    printf("b. List donos whose Carros are from the ano 2010 or later and run on diesel\n");
-    printf("c. List license placas that start with the letter J and end with 0, 2, 4, or 7 and their respective donos\n");
-    printf("d. List modelo and cor of vehicles whose license placas have a vowel as their second letter and whose numerical values add up to an even number\n");
-    printf("e. Change dono by providing the chassis number for Carros with license placas that do not have any digits equal to zero\n");
-    printf("x. Exit\n");
-    printf("Enter your choice: ");
-    scanf(" %c", &choice);
-    return choice;
+// função para imprimir o menu e obter a escolha do usuário
+char menu() {
+    char escolha;
+    bold(1);
+    italic(1);
+    printf("\nLevantamento de veiculos da Secretaria dos Transportes\n");
+    bold(0);
+    italic(0);
+    printf("\na. Adicionar carro\n");
+    printf("b. Lista de veiculos a diesel que são do ano 2010 ou posterior: \n");
+    printf("c. Lista de placas que comecam com a letra J e terminam com 0, 2, 4 ou 7 e seus respectivos donos\n");
+    printf("d. Lista por cor e modelo de veiculos cujas placas possuem como segunda letra uma vogal e cuja soma dos valores numéricos fornece um número par\n");
+    printf("e. Altere o dono informando o numero do chassi dos Carros com placas que nao possuem digitos iguais a zero\n");
+    printf("x. Finalizar\n\n");
+    printf("Digite a letra corresponde a sua escolha: ");
+    scanf(" %c", &escolha);
+    return escolha;
 }
 
 int main() {
-    struct Carro* CarroList = criarLista();
-    char dono[50], gasolina[10], modelo[50], cor[20], Num_Chassis[20], placa[10], ano[10];
-    char newdono[50], Num_ChassisTomudar[20];
-    char choice;
+    struct Carro* lista_carro = criar_lista();
+    char dono[50], combustivel[10], modelo[50], cor[20], num_chassis[20], placa[10], ano[10];
+    char novo_dono[50], num_chassis_mudar[20];
+    char escolha;
 
     do {
-        choice = getMenuChoice();
+        escolha = menu();
 
-        switch (choice) {
+        switch (escolha) {
             case 'a':
-                printf("Enter the dono: ");
+                printf("\nDados do Carro\n");
+                printf("Proprietario: ");
                 fflush(stdin);
                 scanf("%s", dono);
-                printf("Enter the gasolina type (diesel, gasoline, alcohol): ");
+                printf("Informe o tipo de combustivel (diesel, gasolina, alcool): ");
                 fflush(stdin);
-                scanf("%s", gasolina);
-                printf("Enter the modelo: ");
+                scanf("%s", combustivel);
+                printf("Modelo: ");
                 fflush(stdin);
                 scanf("%s", modelo);
-                printf("Enter the cor: ");
+                printf("Cor: ");
                 fflush(stdin);
                 scanf("%s", cor);
-                printf("Enter the chassis number: ");
+                printf("Numero do chassi: ");
                 fflush(stdin);
-                scanf("%s", Num_Chassis);
-                printf("Enter the placa: ");
+                scanf("%s", num_chassis);
+                printf("Placa: ");
                 fflush(stdin);
                 scanf("%s", placa);
-                printf("Enter the ano: ");
+                printf("Ano: ");
                 fflush(stdin);
                 scanf("%s", ano);
-                CarroList = addCarro(CarroList, dono, gasolina, modelo, cor, Num_Chassis, placa, ano);
-                printf("Carro added successfully!\n");
+                lista_carro = addCarro(lista_carro, dono, combustivel, modelo, cor, num_chassis, placa, ano);
+                bold(1);
+                italic(1);
+                printf("Carro adicionado com sucesso!\n");
+                bold(0);
+                italic(0);
                 break;
             case 'b':
-                listdonos(CarroList);
+                listadonos(lista_carro);
                 break;
             case 'c':
-                listLicenseplacas(CarroList);
+                lista_placas(lista_carro);
                 break;
             case 'd':
-                listmodeloAndcor(CarroList);
+                lista_modelo_cor(lista_carro);
                 break;
             case 'e':
-                printf("Enter the chassis number of the Carro: ");
-                scanf("%s", Num_ChassisTomudar);
-                printf("Enter the new dono: ");
-                scanf("%s", newdono);
-                mudardono(CarroList, Num_ChassisTomudar, newdono);
+                printf("Digite o numero do chassi do carro: ");
+                scanf("%s", num_chassis_mudar);
+                printf("Digite o nome do novo dono: ");
+                scanf("%s", novo_dono);
+                mudardono(lista_carro, num_chassis_mudar, novo_dono);
                 break;
             case 'x':
-                printf("Exiting program...\n");
+                bold(1);
+                italic(1);
+                printf("Saindo do programa...\n");
                 break;
+                bold(0);
+                italic(0);
             default:
-                printf("Invalid choice! Please try again.\n");
+                bold(1);
+                italic(1);
+                printf("Escolha invalida! Por favor, tente novamente.\n");
+                bold(0);
+                italic(0);
         }
 
-    } while (choice != 'x');
+    } while (escolha != 'x');
 
     return 0;
 }
