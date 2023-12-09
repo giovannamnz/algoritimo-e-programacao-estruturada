@@ -5,15 +5,15 @@
 1.	Em uma fábrica de peças, o salário base dos operários é de R$ 600,00. Além do salário base, cada operário recebe um adicional de produtividade baseado na quantidade de peças fabricadas por mês. Este adicional é pago de acordo com o seguinte critério:
 
 I. 	 Se o número de peças for inferior ou igual a 50, não existe adicional de produtividade;<br/>
-II.	 Se o número de peças for superior a 50 e inferior ou igual a 80, o adicional de produtividade será de R$ 0,50 para cada peça fabricada acima de 50;
+II.	 Se o número de peças for superior a 50 e inferior ou igual a 80, o adicional de produtividade será de R$ 0,50 para cada peça fabricada acima de 50;<br/>
 III. Se o número de peças for superior a 80, o adicional de produtividade será de R$ 0,50 para cada peça fabricada acima de 50 até 80 e de R$ 0,75 por peça fabricada acima das 80.
 
 
 Elabore um algoritmo para solicitar de cada funcionário a quantidade de peças fabricadas naquele mês e apresentar o seu salário. Isto deve se repetir para todos os funcionários da empresa, onde o usuário não sabe, inicialmente, quantos funcionários existem nesta empresa, ou seja, o número de funcionários não será fornecido. 
 Sua solução proposta deverá possuir as lógicas bem definidas que sejam necessárias a implementação separada em sub-algoritmos específicos, devendo pelo menos os seguintes sub-algoritmos:
 
-I.	validaQuantidade que validará o número de peças fabricadas por cada funcionário;
-II.	calculaSalario que efetuará o cálculo do salário total para cada funcionário.
+I.	validaQuantidade que validará o número de peças fabricadas por cada funcionário; <br/>
+II.	calculaSalario que efetuará o cálculo do salário total para cada funcionário.<br/>
 O resultado final será mostrado ao usuário por meio de um procedimento (mostraFinal).
 
 (1,0 pontos)
