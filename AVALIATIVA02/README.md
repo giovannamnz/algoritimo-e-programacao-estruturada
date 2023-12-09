@@ -4,7 +4,7 @@
 
 1.	Em uma fábrica de peças, o salário base dos operários é de R$ 600,00. Além do salário base, cada operário recebe um adicional de produtividade baseado na quantidade de peças fabricadas por mês. Este adicional é pago de acordo com o seguinte critério:
 
-I. 	 Se o número de peças for inferior ou igual a 50, não existe adicional de produtividade;
+I. 	 Se o número de peças for inferior ou igual a 50, não existe adicional de produtividade;<br/>
 II.	 Se o número de peças for superior a 50 e inferior ou igual a 80, o adicional de produtividade será de R$ 0,50 para cada peça fabricada acima de 50;
 III. Se o número de peças for superior a 80, o adicional de produtividade será de R$ 0,50 para cada peça fabricada acima de 50 até 80 e de R$ 0,75 por peça fabricada acima das 80.
 
